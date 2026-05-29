@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, UtensilsCrossed, BookOpen, Star, Phone } from "lucide-react";
+import { Home, UtensilsCrossed, BookOpen, Star, Phone, X } from "lucide-react";
 
 const navLinks = [
   { to: "/", label: "Home", icon: Home },
@@ -26,7 +26,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-cocoa/60 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[55] bg-cocoa/60 backdrop-blur-sm md:hidden"
           />
 
           {/* Drawer */}
@@ -35,9 +35,20 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 250 }}
-            className="fixed inset-y-0 right-0 z-50 flex w-[280px] flex-col bg-cocoa shadow-2xl md:hidden"
+            className="fixed inset-y-0 right-0 z-[60] flex w-[280px] flex-col bg-cocoa shadow-2xl md:hidden"
           >
-            <div className="flex-1 px-6 pt-24">
+            {/* Close Button Inside Drawer */}
+            <div className="flex justify-end px-6 pt-6">
+              <button
+                onClick={onClose}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-cream/5 text-cream hover:bg-cream/10 transition-colors"
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="flex-1 px-6 pt-8">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.to}

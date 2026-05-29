@@ -84,11 +84,13 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 className={cn(
-                  "font-button text-xs uppercase tracking-[0.15em] transition-colors hover:text-gold",
+                  "font-button text-xs uppercase tracking-[0.15em] transition-colors hover:text-gold pb-1 border-b-2 border-transparent",
                   useDarkText ? "text-cocoa/80" : "text-cream/90",
                 )}
                 activeProps={{
-                  className: "!text-gold",
+                  className: useDarkText 
+                    ? "!text-cocoa font-semibold !border-gold" 
+                    : "!text-gold",
                 }}
               >
                 {link.label}
